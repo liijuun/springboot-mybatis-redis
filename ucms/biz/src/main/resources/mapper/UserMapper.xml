@@ -20,6 +20,7 @@
         VALUES (#{uid}, #{name}, #{password}, #{gender})
     </insert>
 
+    <cache type="com.example.ucms.biz.redis.RedisCache"/>
     <select id="getUserById" parameterType="Integer" resultType="com.example.ucms.biz.entity.User">
         SELECT * FROM sys_user WHERE id = #{id}
     </select>
