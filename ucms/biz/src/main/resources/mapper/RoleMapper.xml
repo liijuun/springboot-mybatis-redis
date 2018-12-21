@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ucms.biz.dao.RoleMapper">
+
+    <resultMap id="role" type="com.example.ucms.biz.entity.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="description" property="description"/>
+        <result column="wight" property="wight"/>
+    </resultMap>
+
+    <resultMap id="user_role" type="com.example.ucms.biz.entity.UserRole">
+        <id column="id" property="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="role_id" property="role_id"/>
+    </resultMap>
+
+
+    <insert id="addRole" parameterType="com.example.ucms.biz.entity.Role">
+        INSERT INTO sys_role (name, code, description, wight)
+        VALUES (#{name}, #{code}, #{description}, #{wight})
+    </insert>
+
+    <select id="getRoleById" parameterType="Integer" resultType="com.example.ucms.biz.entity.Role">
+        SELECT * FROM sys_role WHERE id = #{id}
+    </select>
+
+    <select id="getRoleByName" parameterType="String" resultType="com.example.ucms.biz.entity.Role">
+        SELECT * FROM sys_role WHERE name = #{name}
+    </select>
+
+    <select id="getRoles" resultMap="role">
+        SELECT * FROM sys_role
+    </select>
+
+    <select id="getUsersBindToRole" parameterType="Integer" resultMap="user_role">
+        SELECT * FROM sys_user_role WHERE role_id = #{id}
+    </select>
+
+    <delete id="deleteRoleById" parameterType="Integer">
+        DELETE FROM sys_role WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteRoleByName" parameterType="String">
+        DELETE FROM sys_role WHERE name = #{name}
+    </delete>
+
+    <update id="updateRoleByName" parameterType="com.example.ucms.biz.entity.Role">
+        UPDATE sys_role SET
+            name = #{name},
+            code = #{code},
+            description = #{description},
+            wight = #{wight}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
