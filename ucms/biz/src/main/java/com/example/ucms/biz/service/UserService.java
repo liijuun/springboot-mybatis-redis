@@ -30,7 +30,27 @@ public class UserService {
         if (uid == null){
             throw new ServiceException("Invalid uid: null");
         }
-        return userMapper.getUserByUid(uid);
+
+        User user = userMapper.getUserByUid(uid);
+        if (null == user){
+            throw new ServiceException(
+                    String.format("User(uid=%s) not exist", uid)
+            );
+        }
+        return user;
+    }
+
+    public void deleteUserByUid(String uid){
+        if (null == uid){
+            throw new ServiceException("Invalid uid: null");
+        }
+        User user = userMapper.getUserByUid(uid);
+        if (null == user){
+            throw new ServiceException(
+                    String.format("User(uid=%s) not exist", uid)
+            );
+        }
+        userMapper.deleteUserByUid(uid);
     }
 
     public User getUserById(Integer id){
@@ -41,9 +61,8 @@ public class UserService {
         User user = userMapper.getUserById(id);
         if (user == null){
             throw new ServiceException("User not found.");
-        } else {
-            return user;
         }
+        return user;
     }
 
     public List<User> getUsers(){

@@ -29,6 +29,10 @@
         SELECT * FROM sys_user WHERE uid = #{uid}
     </select>
 
+    <delete id="deleteUserByUid" parameterType="String">
+        DELETE FROM sys_user WHERE uid = #{uid}
+    </delete>
+
     <select id="getUsers" resultMap="user">
         SELECT * FROM sys_user
     </select>

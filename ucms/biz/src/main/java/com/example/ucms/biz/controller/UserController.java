@@ -60,6 +60,16 @@ public class UserController {
         return response;
     }
 
+    @RequestMapping(path = "/{uid}", method = RequestMethod.DELETE)
+    public Response deleteUserByUid(@PathVariable String uid){
+        try {
+            userService.deleteUserByUid(uid);
+        } catch (RuntimeException e){
+            return new Response(Response.R_CODE_NOTOK, e.getMessage());
+        }
+        return new Response();
+    }
+
     @RequestMapping(path = "/{uid}/roles", method = RequestMethod.POST)
     public Response addRole2User(@PathVariable String uid, @RequestParam() String roleName){
         try{

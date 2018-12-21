@@ -16,6 +16,7 @@ public interface UserMapper {
     User getUserByUid(String uid);
     User getUserById(Integer id);
     void addUser(User user);
+    void deleteUserByUid(String uid);
     List<User> getUsers();
 
     void addRole2User(UserRole userRole);
