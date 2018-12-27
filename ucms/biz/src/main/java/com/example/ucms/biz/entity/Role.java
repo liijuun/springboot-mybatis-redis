@@ -2,18 +2,31 @@ package com.example.ucms.biz.entity;
 
 import com.example.ucms.common.entity.BaseEntity;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Created by j23li on 2018/12/19.
  */
 public class Role extends BaseEntity {
 
+    @NotNull
+    @Size(min = 2, max = 20)
     private String name;
-    private String code;
-    private String description;
-    private Integer wight;
 
-    public Role() {
-    }
+    @NotNull
+    private String code;
+
+    private String description;
+
+    @NotNull
+    private Integer wight;
+    public Role(){
+
+    };
 
     public String getName() {
         return name;

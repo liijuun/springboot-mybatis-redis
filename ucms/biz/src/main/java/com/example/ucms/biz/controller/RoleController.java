@@ -6,6 +6,7 @@ import com.example.ucms.common.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class RoleController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Response addRole(@RequestBody Role role){
+    public Response addRole(@Valid @RequestBody Role role){
         try {
             roleService.addRole(role);
         } catch (RuntimeException e){
