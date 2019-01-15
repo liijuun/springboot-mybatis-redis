@@ -4,10 +4,7 @@ import com.example.ucms.biz.entity.Goods;
 import com.example.ucms.biz.service.GoodsService;
 import com.example.ucms.common.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -46,4 +43,42 @@ public class GoodsController {
         response.setData(goodsList);
         return response;
     }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Response<Goods> getGoodsById(@PathVariable Integer id){
+        Goods goods;
+        try{
+            goods = goodsService.getGoodsById(id);
+        } catch (Exception e){
+            return new Response<>(Response.R_CODE_NOTOK, e.getMessage());
+        }
+        Response<Goods> response = new Response<>();
+        response.setData(goods);
+        return response;
+    }
+
+    @RequestMapping(path = "/{id}/stock", method = RequestMethod.GET)
+    public Response<Integer> getGoodsStock(@PathVariable Integer id){
+          Goods goods;
+          try{
+              goods = goodsService.getGoodsById(id);
+          } catch (Exception e){
+              return new Response<>(Response.R_CODE_NOTOK, e.getMessage());
+          }
+          Response<Integer> response = new Response<>();
+          response.setData(goods.getStock());
+          return response;
+    }
+
+    @RequestMapping(path = "/{id}/stock", method = RequestMethod.PUT)
+    public Response updateGoodsStock(@Valid @PathVariable Integer id, @RequestParam Integer stock){
+        try{
+            goodsService.updateGoodsStock(id, stock);
+        } catch (Exception e){
+            return new Response(Response.R_CODE_NOTOK, e.getMessage());
+        }
+        return new Response();
+    }
+
+
 }

@@ -19,6 +19,13 @@ public interface GoodsMapper {
             "VALUES(#{name}, #{description}, #{price}, #{stock})")
     void addGoods(Goods goods);
 
+    @Select("SELECT * from sys_goods WHERE id = #{id} for update")
+    Goods getGoodsById(Integer id);
+
+    @Update("UPDATE sys_goods SET stock=#{stock} WHERE id=#{id}")
+    void updateGoodsStock(Integer id, Integer stock);
+
+
 
 
 }

@@ -7,6 +7,7 @@ import com.example.ucms.common.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Response addUser(@RequestBody User user) {
+    public Response addUser(@Valid @RequestBody User user) {
         try {
             userService.addUser(user);
         } catch (RuntimeException e){
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/{uid}", method = RequestMethod.GET)
-    public Response<User> getUserByUid(@PathVariable("uid") String uid){
+    public Response<User> getUserByUid(@PathVariable String uid){
         User user;
         try{
             user = userService.getUserByUid(uid);

@@ -73,11 +73,14 @@ public class UserService {
         if (null != user.getId()){
             throw new ServiceException("User id is DB auto-increment, must null");
         }
-        if (null == user.getUid() || null == user.getName() || null == user.getPassword()){
-            throw new ServiceException("User uid, name, password can not be null");
-        }
         if( null != userMapper.getUserByUid(user.getUid())){
-            throw new ServiceException(String.format("uid(%s) already been used", user.getUid()));
+            throw new ServiceException(String.format("User(uid=%s) already exist", user.getUid()));
+        }
+
+        if (null != userMapper.getUserByName(user.getName())){
+            throw new ServiceException(
+                    String.format("User(name=%s) already exist", user.getName())
+            );
         }
         userMapper.addUser(user);
     }

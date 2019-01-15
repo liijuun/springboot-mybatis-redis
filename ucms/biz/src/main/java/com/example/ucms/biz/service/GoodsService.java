@@ -31,4 +31,17 @@ public class GoodsService {
     public List<Goods> getAllGoods(){
         return goodsMapper.getAllGoods();
     }
+
+    public Goods getGoodsById(Integer id){
+        return goodsMapper.getGoodsById(id);
+    }
+
+    public void updateGoodsStock(Integer id, Integer stock){
+        if (null == goodsMapper.getGoodsById(id)){
+            throw new ServiceException(
+                    String.format("Goods(id=%s) not exist", id)
+            );
+        }
+        goodsMapper.updateGoodsStock(id, stock);
+    }
 }

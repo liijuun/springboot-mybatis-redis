@@ -1,9 +1,11 @@
 package com.example.ucms.common.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by j23li on 2018/12/20.
  */
-public class Response<T> {
+public class Response<T> implements Serializable {
     private static final String R_MEG_EMPTY = "";
     public static final String R_CODE_OK = "OK";
     public static final String R_CODE_NOTOK = "Not OK";

@@ -20,13 +20,17 @@
         VALUES (#{uid}, #{name}, #{password}, #{gender})
     </insert>
 
-    <cache type="com.example.ucms.biz.redis.RedisCache"/>
+    <!--<cache type="com.example.ucms.biz.redis.RedisCache"/>-->
     <select id="getUserById" parameterType="Integer" resultType="com.example.ucms.biz.entity.User">
         SELECT * FROM sys_user WHERE id = #{id}
     </select>
 
     <select id="getUserByUid" parameterType="String" resultType="com.example.ucms.biz.entity.User">
         SELECT * FROM sys_user WHERE uid = #{uid}
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultType="com.example.ucms.biz.entity.User">
+        select * FROM sys_user where name = #{name}
     </select>
 
     <delete id="deleteUserByUid" parameterType="String">
