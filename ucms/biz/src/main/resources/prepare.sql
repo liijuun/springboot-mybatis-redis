@@ -37,6 +37,20 @@ CREATE TABLE sys_order (
   count INT NOT NULL
 );
 
+CREATE TABLE sys_math_score (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL ,
+  math FLOAT
+);
+
+CREATE TABLE sys_english_score (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL ,
+  english FLOAT
+);
+
+
+
 TRUNCATE  sys_order;
 
 DROP TABLE sys_user;
@@ -62,6 +76,8 @@ INSERT INTO sys_role VALUES (0, "anonimous", "anonimous", 4);
 INSERT INTO sys_role VALUES (0, "common", "common user", 6);
 
 INSERT INTO sys_role VALUES (0, "test", "test user", 7);
+
+
 
 
 
