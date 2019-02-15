@@ -1,8 +1,6 @@
 package com.example.ucms.biz.receiver;
 
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 
 @Component

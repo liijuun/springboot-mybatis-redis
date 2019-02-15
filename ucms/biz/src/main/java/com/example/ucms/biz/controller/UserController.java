@@ -2,6 +2,7 @@ package com.example.ucms.biz.controller;
 
 import com.example.ucms.biz.entity.Role;
 import com.example.ucms.biz.entity.User;
+import com.example.ucms.biz.rabbitMQProducer.Producer;
 import com.example.ucms.biz.service.UserService;
 import com.example.ucms.common.entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,16 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @Autowired
+    private Producer producer;
+
     @RequestMapping(method = RequestMethod.GET)
     public Response<List<User>> getUsers(){
+
+//        producer triggered by http get requests
+        producer.send("Get all Users");
+
         List<User> users;
         try {
             users = userService.getUsers();
