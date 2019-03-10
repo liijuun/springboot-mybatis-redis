@@ -9,7 +9,7 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'ls -al'
-                sh 'mvn -Dmaven.test.skip=true clean package -f ucms/biz/pom.xml' 
+                sh 'mvn -Dmaven.test.skip=true clean package -f ucms/pom.xml' 
             }
         }
     }
