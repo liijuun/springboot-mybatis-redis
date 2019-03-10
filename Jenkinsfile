@@ -12,5 +12,11 @@ pipeline {
                 sh 'mvn -Dmaven.test.skip=true clean package -f ucms/pom.xml' 
             }
         }
+
+        stage('Deploy') {
+            steps{
+                sh 'java -jar ucms/biz/target/biz-0.0.1-SNAPSHOT.jar'
+            }
+        }
     }
 }
