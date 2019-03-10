@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                sh 'ls -al'
                 sh 'mvn -B -DskipTests clean package ucms/biz/pom.xml' 
             }
         }
